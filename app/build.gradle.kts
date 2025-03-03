@@ -102,6 +102,10 @@ dependencies {
     // Dagger Hilt Dependencies
     implementation("com.google.dagger:hilt-android:2.51.1")
     kapt("com.google.dagger:hilt-android-compiler:2.51.1")
+
+
+    //    Glide
+    implementation("com.github.bumptech.glide:glide:4.15.0")
 }
 
 kapt {
