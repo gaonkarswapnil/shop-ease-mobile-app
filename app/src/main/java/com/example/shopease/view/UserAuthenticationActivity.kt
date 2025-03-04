@@ -24,6 +24,11 @@ class UserAuthenticationActivity : AppCompatActivity() {
                .replace(R.id.fragment_container, RegisterFragment())
                .commit()
         }
+        else if(fragmentLoad == "Login"){
+            supportFragmentManager.beginTransaction()
+               .replace(R.id.fragment_container, LoginFragment())
+               .commit()
+        }
 
     }
 }

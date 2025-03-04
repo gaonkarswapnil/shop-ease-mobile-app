@@ -59,6 +59,13 @@ class SplashScreenActivity : AppCompatActivity() {
                 }
             }
 
+            binding.tvSignIn.setOnClickListener {
+                Intent(this, UserAuthenticationActivity::class.java).also {
+                    it.putExtra("FRAGMENT_TO_LOAD", "Login")
+                    startActivity(it)
+                }
+            }
+
         }
 
 //        finish()
