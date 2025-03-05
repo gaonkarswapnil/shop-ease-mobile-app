@@ -9,5 +9,19 @@
         <item name="android:windowDisablePreview">true</item>
     </style>
 
+    <style name="Theme.MyApp.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/light_grey</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/app_icon_splash_screen_icon</item>
+        <item name="postSplashScreenTheme">@style/Base.Theme.ShopEase</item>
+
+
+<!--                <item name="android:windowSplashScreenBackground">@color/light_grey</item>-->
+<!--                <item name="windowSplashScreenAnimatedIcon">@drawable/app_icon_splash_screen</item>-->
+<!--                <item name="android:windowSplashScreenAnimationDuration">1000</item>-->
+<!--                <item name="android:windowSplashScreenIconBackgroundColor">@color/light_grey</item>-->
+<!--                <item name="android:windowSplashScreenBrandingImage">@drawable/app_icon_splash_screen</item>-->
+<!--                <item name="android:windowSplashScreenBehavior">icon_preferred</item>-->
+    </style>
+
     <style name="Theme.ShopEase" parent="Base.Theme.ShopEase" />
 </resources>
