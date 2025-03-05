@@ -1,6 +1,8 @@
 package com.example.shopease.services.remote
 
 import com.example.shopease.model.ImageUploadResponse
+import com.example.shopease.model.LoginRequest
+import com.example.shopease.model.LoginResponse
 import com.example.shopease.model.UserRegistrationRequest
 import com.example.shopease.model.UserResponse
 import okhttp3.MultipartBody
@@ -20,4 +22,9 @@ interface UserApiService {
     @Multipart
     @POST("files/upload")
     suspend fun uploadImage(@Part file: MultipartBody.Part): Response<ImageUploadResponse>
+
+    @POST("auth/login")
+    suspend fun loginUser(
+        @Body loginRequest: LoginRequest
+    ): Response<LoginResponse>
 }
