@@ -40,20 +40,30 @@ class LoginFragment : Fragment() {
                 email = binding.etEmail.text.toString(),
                 password = binding.etPassword.text.toString()
             )
-
-            loginViewModel.login(request)
-
-            loginViewModel.loginResponse.observe(viewLifecycleOwner, Observer { response ->
-                response.onSuccess {
-                    Intent(requireContext(), HomeActivity::class.java).also {
-                        startActivity(it)
-                        requireActivity().finish()
-                    }
-                }.onFailure {
-                    Toast.makeText(requireContext(), "Login failed", Toast.LENGTH_SHORT).show()
-                }
-            })
+            login(request)
         }
+
+        binding.tvSignUp.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, RegisterFragment())
+                .commit()
+
+        }
+    }
+
+    private fun login(request: LoginRequest) {
+        loginViewModel.login(request)
+
+        loginViewModel.loginResponse.observe(viewLifecycleOwner, Observer { response ->
+            response.onSuccess {
+                Intent(requireContext(), HomeActivity::class.java).also {
+                    startActivity(it)
+                    requireActivity().finish()
+                }
+            }.onFailure {
+                Toast.makeText(requireContext(), "Login failed", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
 }
