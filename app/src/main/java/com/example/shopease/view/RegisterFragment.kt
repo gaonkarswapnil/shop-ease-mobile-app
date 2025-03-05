@@ -19,8 +19,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
+import com.example.shopease.R
 import com.example.shopease.databinding.FragmentRegisterBinding
+import com.example.shopease.model.LoginRequest
 import com.example.shopease.model.UserRegistrationRequest
+import com.example.shopease.viewmodel.LoginViewModel
 import com.example.shopease.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -33,6 +36,7 @@ import java.io.File
 class RegisterFragment : Fragment() {
     private lateinit var binding: FragmentRegisterBinding
     private val userViewModel: UserViewModel by viewModels()
+    private val loginViewModel: LoginViewModel by viewModels()
 
     private var imageUri: Uri? = null
 
@@ -62,6 +66,13 @@ class RegisterFragment : Fragment() {
             registerUser()
         }
 
+        binding.tvSignUp.setOnClickListener {
+
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, LoginFragment())
+                .commit()
+        }
+
         // Observe Image Upload Response
         userViewModel.imageRes.observe(viewLifecycleOwner, Observer { result ->
             result.onSuccess { imageResponse ->
@@ -76,8 +87,29 @@ class RegisterFragment : Fragment() {
         userViewModel.userRegister.observe(viewLifecycleOwner, Observer { result ->
             result.onSuccess {
                 Toast.makeText(requireContext(), "Registration Successful", Toast.LENGTH_SHORT).show()
+
+                val request = LoginRequest(
+                    it.email,
+                    it.password
+                )
+                login(request)
             }.onFailure {
                 Toast.makeText(requireContext(), "Registration Failed", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun login(request: LoginRequest) {
+        loginViewModel.login(request)
+
+        loginViewModel.loginResponse.observe(viewLifecycleOwner, Observer { response ->
+            response.onSuccess {
+                Intent(requireContext(), HomeActivity::class.java).also {
+                    startActivity(it)
+                    requireActivity().finish()
+                }
+            }.onFailure {
+                Toast.makeText(requireContext(), "Login failed", Toast.LENGTH_SHORT).show()
             }
         })
     }

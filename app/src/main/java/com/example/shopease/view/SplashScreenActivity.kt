@@ -56,6 +56,7 @@ class SplashScreenActivity : AppCompatActivity() {
                 Intent(this, UserAuthenticationActivity::class.java).also {
                     it.putExtra("FRAGMENT_TO_LOAD", "Register")
                     startActivity(it)
+                    finish()
                 }
             }
 
@@ -63,6 +64,7 @@ class SplashScreenActivity : AppCompatActivity() {
                 Intent(this, UserAuthenticationActivity::class.java).also {
                     it.putExtra("FRAGMENT_TO_LOAD", "Login")
                     startActivity(it)
+                    finish()
                 }
             }
 
