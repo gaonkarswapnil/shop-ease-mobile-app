@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ShopEase</string>
+
+    <string name="tag">ShopEase</string>
 </resources>
