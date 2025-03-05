@@ -23,6 +23,7 @@ import com.example.shopease.R
 import com.example.shopease.databinding.FragmentRegisterBinding
 import com.example.shopease.model.LoginRequest
 import com.example.shopease.model.UserRegistrationRequest
+import com.example.shopease.utils.NetworkManager
 import com.example.shopease.viewmodel.LoginViewModel
 import com.example.shopease.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,6 +36,7 @@ import java.io.File
 @AndroidEntryPoint
 class RegisterFragment : Fragment() {
     private lateinit var binding: FragmentRegisterBinding
+    private lateinit var session: NetworkManager
     private val userViewModel: UserViewModel by viewModels()
     private val loginViewModel: LoginViewModel by viewModels()
 
@@ -87,7 +89,7 @@ class RegisterFragment : Fragment() {
         userViewModel.userRegister.observe(viewLifecycleOwner, Observer { result ->
             result.onSuccess {
                 Toast.makeText(requireContext(), "Registration Successful", Toast.LENGTH_SHORT).show()
-
+                session = NetworkManager(requireContext())
                 val request = LoginRequest(
                     it.email,
                     it.password
@@ -104,6 +106,7 @@ class RegisterFragment : Fragment() {
 
         loginViewModel.loginResponse.observe(viewLifecycleOwner, Observer { response ->
             response.onSuccess {
+                session.addSessionToken(it.accessToken)
                 Intent(requireContext(), HomeActivity::class.java).also {
                     startActivity(it)
                     requireActivity().finish()

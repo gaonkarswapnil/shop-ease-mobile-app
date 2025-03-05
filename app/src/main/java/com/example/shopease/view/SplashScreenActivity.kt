@@ -10,6 +10,7 @@ import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.shopease.R
 import com.example.shopease.databinding.ActivitySplashScreenBinding
+import com.example.shopease.utils.NetworkManager
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,11 +39,15 @@ class SplashScreenActivity : AppCompatActivity() {
     }
 
     private fun navigateToNextScreen() {
-//        val accessToken = PreferenceManager.getAccessToken(this)
-//        val isLoggedIn = !accessToken.isNullOrBlank()
+        val accessToken = NetworkManager(this)
+        val isLoggedIn = !accessToken.getSessionToken().isNullOrEmpty()
 
-        val isLoggedIn = false
+//        val isLoggedIn = false
         val nextActivity = if (isLoggedIn) {
+            Intent(this, HomeActivity::class.java).also {
+                startActivity(it)
+                finish()
+            }
             Toast.makeText(this, "Login Screen ", Toast.LENGTH_SHORT).show()
             Log.d(getString(R.string.tag), "Login Screen")
         } else {
