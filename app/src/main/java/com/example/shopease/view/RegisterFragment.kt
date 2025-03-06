@@ -106,7 +106,7 @@ class RegisterFragment : Fragment() {
 
         loginViewModel.loginResponse.observe(viewLifecycleOwner, Observer { response ->
             response.onSuccess {
-                session.addSessionToken(it.accessToken)
+                session.addSessionToken(it.accessToken, it.refreshToken)
                 Intent(requireContext(), HomeActivity::class.java).also {
                     startActivity(it)
                     requireActivity().finish()
