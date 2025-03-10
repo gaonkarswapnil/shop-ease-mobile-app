@@ -1,6 +1,7 @@
 package com.example.shopease.di
 
 import com.example.shopease.BuildConfig
+import com.example.shopease.services.remote.CategoriesApiService
 import com.example.shopease.services.remote.UserApiService
 import dagger.Module
 import dagger.Provides
@@ -42,4 +43,7 @@ object RetrofitHelper {
     @Singleton
     fun provideApiService(retrofit: Retrofit): UserApiService = retrofit.create(UserApiService::class.java)
 
+    @Provides
+    @Singleton
+    fun provideCategoriesApiService(retrofit: Retrofit): CategoriesApiService = retrofit.create(CategoriesApiService::class.java)
 }

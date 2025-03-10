@@ -1,7 +1,9 @@
 package com.example.shopease.di
 
+import com.example.shopease.repository.implementation.CategoriesRepositoryImpl
 import com.example.shopease.repository.implementation.LoginRepositoryImpl
 import com.example.shopease.repository.implementation.UserRepositoryImpl
+import com.example.shopease.repository.interfaces.CategoriesRepository
 import com.example.shopease.repository.interfaces.LoginRepository
 import com.example.shopease.repository.interfaces.UserRepository
 import dagger.Module
@@ -23,5 +25,11 @@ class UserModule {
     @Singleton
     fun provideLoginModule(user: LoginRepositoryImpl): LoginRepository{
         return user
+    }
+
+    @Provides
+    @Singleton
+    fun provideCategoryModule(category: CategoriesRepositoryImpl): CategoriesRepository {
+        return category
     }
 }
