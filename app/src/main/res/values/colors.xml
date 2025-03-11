@@ -4,12 +4,16 @@
 <!--    <color name="white">#FFFFFFFF</color>-->
 
     <color name="primary">#854836</color>
-    <color name="colorPrimaryDark">#FFFFFFFF</color>
-    <color name="colorAccent">#F7F7F7</color>
+    <color name="colorPrimaryDark">#5B3A1E</color>
+    <color name="colorAccent">#F4E8D5</color>
+    <color name="textColor">#5B3A1E</color>
 
     <color name="light_grey">#D3D3D3</color>
 
     <color name="white">#61D3D3D3</color>
+
+
+    <color name="icon_white">#FFFFFF</color>
 
 
 </resources>

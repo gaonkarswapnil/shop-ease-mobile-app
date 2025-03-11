@@ -35,6 +35,7 @@ class ProductCategoryAdapter(
         Glide
             .with(holder.image.context)
             .load(data.images[0])
+            .placeholder(R.drawable.images)
             .into(holder.image)
 
         holder.title.text = data.title

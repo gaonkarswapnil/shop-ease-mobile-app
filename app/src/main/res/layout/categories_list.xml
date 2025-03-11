@@ -6,6 +6,8 @@
     android:layout_width="110dp"
     android:elevation="10dp"
     app:cardCornerRadius="10dp"
+    app:cardBackgroundColor="@color/colorAccent"
+    android:background="@drawable/card_border"
     app:cardUseCompatPadding="true">
 
     <LinearLayout

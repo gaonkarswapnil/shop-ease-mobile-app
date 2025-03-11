@@ -58,8 +58,8 @@ class HomeFragment : Fragment(), onItemClickListener {
         viewModel.categoryByProduct.observe(viewLifecycleOwner, Observer { response ->
             response
                 .onSuccess {
-//                    binding.rvProductCategory.layoutManager = GridLayoutManager(requireContext(), 2)
-                    binding.rvProductCategory.layoutManager = LinearLayoutManager(requireContext())
+                    binding.rvProductCategory.layoutManager = GridLayoutManager(requireContext(), 2)
+//                    binding.rvProductCategory.layoutManager = LinearLayoutManager(requireContext())
 //                    binding.rvProductCategory.setHasFixedSize(true)
 //                    binding.rvProductCategory.isNestedScrollingEnabled = false
                     val adapater  = ProductCategoryAdapter(it)
