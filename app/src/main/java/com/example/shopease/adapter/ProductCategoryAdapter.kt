@@ -8,16 +8,20 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.shopease.R
+import com.example.shopease.interfaces.OnProductClick
 import com.example.shopease.model.ProductByCategoryItem
 
 class ProductCategoryAdapter(
-    private val list: List<ProductByCategoryItem>
+    private val list: List<ProductByCategoryItem>,
+    private val onClick: OnProductClick
 ): RecyclerView.Adapter<ProductCategoryAdapter.ProductCategoryViewHolder>() {
 
     class ProductCategoryViewHolder(item: View): RecyclerView.ViewHolder(item){
         val image: ImageView = item.findViewById(R.id.iv_product_image)
         val title: TextView = item.findViewById(R.id.tv_product_name)
         val price: TextView = item.findViewById(R.id.tv_product_price)
+
+        val icon: ImageView = item.findViewById(R.id.wishListBtn)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductCategoryViewHolder {
@@ -39,7 +43,11 @@ class ProductCategoryAdapter(
             .into(holder.image)
 
         holder.title.text = data.title
-        holder.price.text = "$. ${data.price}"
+        holder.price.text = "$ ${data.price}"
+
+        holder.icon.setOnClickListener {
+            onClick.onProductClick(data)
+        }
     }
 
 

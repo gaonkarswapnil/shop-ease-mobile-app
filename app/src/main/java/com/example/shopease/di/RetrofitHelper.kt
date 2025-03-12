@@ -1,8 +1,8 @@
 package com.example.shopease.di
 
 import com.example.shopease.BuildConfig
-import com.example.shopease.services.remote.CategoriesApiService
-import com.example.shopease.services.remote.UserApiService
+import com.example.shopease.services.network.CategoriesApiService
+import com.example.shopease.services.network.UserApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

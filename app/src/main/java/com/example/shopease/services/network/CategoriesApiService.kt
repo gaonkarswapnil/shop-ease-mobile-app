@@ -1,4 +1,4 @@
-package com.example.shopease.services.remote
+package com.example.shopease.services.network
 
 import com.example.shopease.model.ProductByCategoryItem
 import com.example.shopease.model.ResponseCategoriesItem

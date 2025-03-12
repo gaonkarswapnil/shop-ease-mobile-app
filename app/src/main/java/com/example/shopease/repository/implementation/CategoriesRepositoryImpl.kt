@@ -3,7 +3,7 @@ package com.example.shopease.repository.implementation
 import com.example.shopease.model.ProductByCategoryItem
 import com.example.shopease.model.ResponseCategoriesItem
 import com.example.shopease.repository.interfaces.CategoriesRepository
-import com.example.shopease.services.remote.CategoriesApiService
+import com.example.shopease.services.network.CategoriesApiService
 import javax.inject.Inject
 
 class CategoriesRepositoryImpl @Inject constructor(

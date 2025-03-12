@@ -1,6 +1,5 @@
 package com.example.shopease.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,20 +7,17 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.example.shopease.R
+import com.example.shopease.interfaces.OnItemClickListener
 import com.example.shopease.model.ResponseCategoriesItem
 
 class CategoriesAdapter(
     private val list: List<ResponseCategoriesItem>,
-    private val listener: onItemClickListener
+    private val listener: OnItemClickListener
 ): RecyclerView.Adapter<CategoriesAdapter.CategoryItemHolder>() {
 
     private var selectedPosition = RecyclerView.NO_POSITION
-    interface onItemClickListener{
-        fun onItemClick(category: ResponseCategoriesItem)
-    }
 
     class CategoryItemHolder(view: View): RecyclerView.ViewHolder(view){
         val card: CardView = itemView.findViewById(R.id.cardCategories)

@@ -41,14 +41,14 @@ android:padding="10dp">
             android:layout_margin="16dp" />
 
 
-        <ImageView
-            android:id="@+id/fullwishListBtn"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:visibility="gone"
-            android:src="@drawable/after_wishlist"
-            android:layout_gravity="top|end"
-            android:layout_margin="16dp" />
+<!--        <ImageView-->
+<!--            android:id="@+id/fullwishListBtn"-->
+<!--            android:layout_width="25dp"-->
+<!--            android:layout_height="25dp"-->
+<!--            android:visibility="gone"-->
+<!--            android:src="@drawable/after_wishlist"-->
+<!--            android:layout_gravity="top|end"-->
+<!--            android:layout_margin="16dp" />-->
 
         <!-- Product Info Card -->
         <androidx.cardview.widget.CardView

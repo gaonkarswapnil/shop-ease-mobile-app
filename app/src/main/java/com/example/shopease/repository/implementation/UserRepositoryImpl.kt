@@ -4,7 +4,7 @@ import com.example.shopease.model.ImageUploadResponse
 import com.example.shopease.model.UserRegistrationRequest
 import com.example.shopease.model.UserResponse
 import com.example.shopease.repository.interfaces.UserRepository
-import com.example.shopease.services.remote.UserApiService
+import com.example.shopease.services.network.UserApiService
 import okhttp3.MultipartBody
 import javax.inject.Inject
 

@@ -3,7 +3,7 @@ package com.example.shopease.repository.implementation
 import com.example.shopease.model.LoginRequest
 import com.example.shopease.model.LoginResponse
 import com.example.shopease.repository.interfaces.LoginRepository
-import com.example.shopease.services.remote.UserApiService
+import com.example.shopease.services.network.UserApiService
 import javax.inject.Inject
 
 class LoginRepositoryImpl @Inject constructor(
