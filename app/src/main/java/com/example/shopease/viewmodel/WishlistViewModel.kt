@@ -2,6 +2,8 @@ package com.example.shopease.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.shopease.model.ProductByCategoryItem
@@ -29,6 +31,15 @@ class WishlistViewModel @Inject constructor(
 
     suspend fun isProductAvailable(id: Int): Boolean{
         return repository.isProductInWishlist(id)
+    }
+
+    private val _wishlistProduct: MutableLiveData<List<ProductByCategoryItem>> = MutableLiveData<List<ProductByCategoryItem>>()
+    val wishlistProduct: LiveData<List<ProductByCategoryItem>> = _wishlistProduct
+
+    fun getProducts(){
+        viewModelScope.launch {
+            _wishlistProduct.postValue(repository.getWishlistProduct())
+        }
     }
 
 }

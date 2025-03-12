@@ -10,4 +10,6 @@ interface WishlistRepository {
 
     suspend fun isProductInWishlist(id: Int): Boolean
 
+    suspend fun getWishlistProduct(): List<ProductByCategoryItem>
+
 }

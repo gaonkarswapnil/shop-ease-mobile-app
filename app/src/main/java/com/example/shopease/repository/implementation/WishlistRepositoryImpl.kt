@@ -20,4 +20,8 @@ class WishlistRepositoryImpl @Inject constructor(
         return wishListDao.isProductAdded(id) != null
     }
 
+    override suspend fun getWishlistProduct(): List<ProductByCategoryItem> {
+        return wishListDao.getAllProduct()
+    }
+
 }
