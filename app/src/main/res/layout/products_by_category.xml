@@ -1,99 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:padding="10dp">
-
-<androidx.cardview.widget.CardView
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="20dp"
-    app:cardElevation="6dp"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintBottom_toBottomOf="parent"
-    android:padding="10dp"
-    android:background="@color/white">
+    android:padding="10dp">
 
-    <FrameLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:cardBackgroundColor="@color/colorAccent"
+        app:cardCornerRadius="20dp"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <!-- Product Image -->
-        <ImageView
-            android:id="@+id/iv_product_image"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:src="@drawable/images"
-            android:scaleType="fitXY"
-            android:layout_gravity="center" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <!-- Wishlist Button Positioned to the Top Right -->
-        <ImageView
-            android:id="@+id/wishListBtn"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@drawable/before_wishlist"
-            android:layout_gravity="top|end"
-            android:layout_margin="16dp" />
-
-
-<!--        <ImageView-->
-<!--            android:id="@+id/fullwishListBtn"-->
-<!--            android:layout_width="25dp"-->
-<!--            android:layout_height="25dp"-->
-<!--            android:visibility="gone"-->
-<!--            android:src="@drawable/after_wishlist"-->
-<!--            android:layout_gravity="top|end"-->
-<!--            android:layout_margin="16dp" />-->
-
-        <!-- Product Info Card -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="6dp"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="16dp"
-            android:padding="10dp">
-
-            <LinearLayout
+            <FrameLayout
+                android:id="@+id/frameLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <!-- Product Image -->
+                <ImageView
+                    android:id="@+id/iv_product_image"
+                    android:layout_width="250dp"
+                    android:layout_height="247dp"
+                    android:layout_gravity="center"
+                    android:scaleType="fitXY"
+                    android:background="@drawable/card_image_radius"
+                    android:src="@drawable/images" />
+
+                <!-- Wishlist Button Positioned to the Top Right -->
+                <ImageView
+                    android:id="@+id/wishListBtn"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="top|end"
+                    android:layout_margin="16dp"
+                    android:src="@drawable/before_wishlist" />
+
+
+                <!--        <ImageView-->
+                <!--            android:id="@+id/fullwishListBtn"-->
+                <!--            android:layout_width="25dp"-->
+                <!--            android:layout_height="25dp"-->
+                <!--            android:visibility="gone"-->
+                <!--            android:src="@drawable/after_wishlist"-->
+                <!--            android:layout_gravity="top|end"-->
+                <!--            android:layout_margin="16dp" />-->
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@android:color/transparent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/frameLayout">
 
                 <TextView
                     android:id="@+id/tv_product_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="White Top"
-                    android:fontFamily="@font/roboto_condensed_bold"
-                    android:textSize="18sp"
-                    android:backgroundTint="@android:color/transparent"
-                    android:textColor="@color/black"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"/>
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:fontFamily="@font/roboto_condensed_bold"
+                    android:text="White Top"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/tv_product_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="₹755"
-                    android:fontFamily="@font/roboto_condensed_bold"
-                    android:textSize="20sp"
-                    android:textColor="@color/black"
                     android:layout_marginStart="16dp"
-                    android:layout_marginBottom="8dp"/>
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/roboto_condensed_bold"
+                    android:text="₹755"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </FrameLayout>
-
-</androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

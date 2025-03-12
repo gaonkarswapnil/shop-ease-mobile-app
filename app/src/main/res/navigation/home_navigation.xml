@@ -10,4 +10,9 @@
         android:name="com.example.shopease.view.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/wishlistFragment"
+        android:name="com.example.shopease.view.WishlistFragment"
+        android:label="fragment_wishlist"
+        tools:layout="@layout/fragment_wishlist" />
 </navigation>

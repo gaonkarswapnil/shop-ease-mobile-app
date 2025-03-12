@@ -40,6 +40,8 @@ class HomeActivity : AppCompatActivity() {
                 }
 
                 R.id.wishList -> {
+                    navController.popBackStack(R.id.wishlistFragment, false)
+                    navController.navigate(R.id.wishlistFragment)
                     true
                 }
 
