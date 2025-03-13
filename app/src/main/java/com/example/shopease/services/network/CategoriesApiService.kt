@@ -15,4 +15,10 @@ interface CategoriesApiService {
     suspend fun getSingleCategoriesProducts(
         @Path("id") id: Int
     ): Response<List<ProductByCategoryItem>>
+
+
+    @GET("products/{id}")
+    suspend fun getSingleProduct(
+        @Path("id") id: Int
+    ): Response<ProductByCategoryItem>
 }

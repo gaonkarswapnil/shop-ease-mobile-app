@@ -5,18 +5,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.shopease.R
+import com.example.shopease.interfaces.ForProductId
 import com.example.shopease.interfaces.OnProductClick
 import com.example.shopease.model.ProductByCategoryItem
 
 class ProductCategoryAdapter(
     private val list: List<ProductByCategoryItem>,
-    private val onClick: OnProductClick
+    private val onClick: OnProductClick,
+    private val click: ForProductId
 ): RecyclerView.Adapter<ProductCategoryAdapter.ProductCategoryViewHolder>() {
 
     class ProductCategoryViewHolder(item: View): RecyclerView.ViewHolder(item){
+        val card: CardView = item.findViewById(R.id.cv_product)
+
         val image: ImageView = item.findViewById(R.id.iv_product_image)
         val title: TextView = item.findViewById(R.id.tv_product_name)
         val price: TextView = item.findViewById(R.id.tv_product_price)
@@ -47,6 +52,10 @@ class ProductCategoryAdapter(
 
         holder.icon.setOnClickListener {
             onClick.onProductClick(data)
+        }
+
+        holder.card.setOnClickListener {
+            click.onItemClick(data.id)
         }
     }
 

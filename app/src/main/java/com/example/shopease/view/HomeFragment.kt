@@ -1,5 +1,6 @@
 package com.example.shopease.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -7,15 +8,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.shopease.R
 import com.example.shopease.adapter.CategoriesAdapter
 import com.example.shopease.databinding.FragmentHomeBinding
 import com.example.shopease.model.ResponseCategoriesItem
 import com.example.shopease.utils.NetworkManager
 import com.example.shopease.adapter.ProductCategoryAdapter
+import com.example.shopease.interfaces.ForProductId
 import com.example.shopease.interfaces.OnItemClickListener
 import com.example.shopease.interfaces.OnProductClick
 import com.example.shopease.model.ProductByCategoryItem
@@ -28,7 +33,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(), OnItemClickListener, OnProductClick {
+class HomeFragment : Fragment(), OnItemClickListener, OnProductClick, ForProductId {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var session: NetworkManager
@@ -70,7 +75,7 @@ class HomeFragment : Fragment(), OnItemClickListener, OnProductClick {
 //                    binding.rvProductCategory.layoutManager = LinearLayoutManager(requireContext())
 //                    binding.rvProductCategory.setHasFixedSize(true)
 //                    binding.rvProductCategory.isNestedScrollingEnabled = false
-                    val adapater  = ProductCategoryAdapter(it, this)
+                    val adapater  = ProductCategoryAdapter(it, this, this)
                     binding.rvProductCategory.adapter = adapater
                 }.onFailure {
                     Toast.makeText(requireContext(),"Unable to Load Products", Toast.LENGTH_SHORT).show()
@@ -96,5 +101,11 @@ class HomeFragment : Fragment(), OnItemClickListener, OnProductClick {
                 }
             }
         }
+    }
+
+    override fun onItemClick(productId: Int) {
+        val bundle = Bundle()
+        bundle.putInt("productId", productId)
+        findNavController().navigate(R.id.productDetailFragment, bundle)
     }
 }
