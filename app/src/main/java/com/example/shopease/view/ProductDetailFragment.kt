@@ -67,7 +67,7 @@ class ProductDetailFragment : Fragment() {
                         .placeholder(R.drawable.images)
                         .into(binding.ivProductImage)
 
-                    if(it.category.name == "clothes"){
+                    if(it.category.name.lowercase() == "clothes"){
                         binding.tvSize.visibility = View.VISIBLE
                         binding.rgSize.visibility = View.VISIBLE
                     }else{
