@@ -16,7 +16,10 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.shopease.R
 import com.example.shopease.databinding.FragmentProductDetailBinding
+import com.example.shopease.model.AddToCart
+import com.example.shopease.model.Category
 import com.example.shopease.model.ProductByCategoryItem
+import com.example.shopease.viewmodel.CartViewModel
 import com.example.shopease.viewmodel.ProductsViewModel
 import com.example.shopease.viewmodel.WishlistViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,8 +30,10 @@ class ProductDetailFragment : Fragment() {
     private lateinit var binding: FragmentProductDetailBinding
     private val product: ProductsViewModel by viewModels()
     private val wishList: WishlistViewModel by viewModels()
+    private val cart: CartViewModel by viewModels()
 
     private var productDetail: ProductByCategoryItem? = null
+    private var addToCart: AddToCart? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,6 +62,25 @@ class ProductDetailFragment : Fragment() {
             response
                 .onSuccess {
                     productDetail = it
+
+                    addToCart = AddToCart(
+                        category = Category(
+                            creationAt = it.category.creationAt,
+                            id = it.category.id,
+                            image = it.category.image,
+                            name = it.category.name,
+                            slug = it.category.slug,
+                            updatedAt = it.category.updatedAt
+                        ),
+                        creationAt = it.creationAt,
+                        description = it.description,
+                        id = it.id,
+                        images = it.images,
+                        price = it.price,
+                        slug = it.slug,
+                        title = it.title,
+                        updatedAt = it.updatedAt
+                    )
                     binding.tvProductName.text = it.title
                     binding.tvProductDescription.text = it.description
                     binding.tvPrice.text = "$ ${it.price}"
@@ -105,6 +129,28 @@ class ProductDetailFragment : Fragment() {
                 }
             }
 
+        }
+
+        lifecycleScope.launch {
+            if(cart.isProductInCart(id)){
+                binding.btnAddToCart.text = "Remove From Cart"
+            }else{
+                binding.btnAddToCart.text = "Add To Cart"
+            }
+        }
+
+
+        
+        binding.btnAddToCart.setOnClickListener {
+            lifecycleScope.launch {
+                if(cart.isProductInCart(id)){
+                    cart.removeFromCart(id)
+                    binding.btnAddToCart.text = "Add To Cart"
+                }else{
+                    cart.addToCart(addToCart!!)
+                    binding.btnAddToCart.text = "Remove From Cart"
+                }
+            }
         }
     }
 

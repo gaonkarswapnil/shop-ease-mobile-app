@@ -1,10 +1,12 @@
 package com.example.shopease.di
 
+import com.example.shopease.repository.implementation.CartRepositoryImpl
 import com.example.shopease.repository.implementation.CategoriesRepositoryImpl
 import com.example.shopease.repository.implementation.LoginRepositoryImpl
 import com.example.shopease.repository.implementation.ProductDetailRepositoryImpl
 import com.example.shopease.repository.implementation.UserRepositoryImpl
 import com.example.shopease.repository.implementation.WishlistRepositoryImpl
+import com.example.shopease.repository.interfaces.CartRepository
 import com.example.shopease.repository.interfaces.CategoriesRepository
 import com.example.shopease.repository.interfaces.LoginRepository
 import com.example.shopease.repository.interfaces.ProductDetailRepository
@@ -47,5 +49,11 @@ class UserModule {
     @Singleton
     fun provideProduct(product: ProductDetailRepositoryImpl): ProductDetailRepository{
         return product
+    }
+
+    @Provides
+    @Singleton
+    fun provideCart(cart: CartRepositoryImpl): CartRepository{
+        return cart
     }
 }
