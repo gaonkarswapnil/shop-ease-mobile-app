@@ -7,7 +7,7 @@ import com.example.shopease.model.AddToCart
 import com.example.shopease.model.ProductByCategoryItem
 import com.example.shopease.services.local.converters.Converter
 
-@Database(entities =[ProductByCategoryItem::class, AddToCart::class], version = 2, exportSchema = false)
+@Database(entities =[ProductByCategoryItem::class, AddToCart::class], version = 3, exportSchema = false)
 @TypeConverters(Converter::class)
 abstract class ProductDB: RoomDatabase() {
 

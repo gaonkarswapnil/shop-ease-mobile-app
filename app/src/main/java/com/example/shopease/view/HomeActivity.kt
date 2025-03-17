@@ -48,6 +48,8 @@ class HomeActivity : AppCompatActivity() {
                 }
 
                 R.id.cart -> {
+                    navController.popBackStack(R.id.cartFragment, false)
+                    navController.navigate(R.id.cartFragment)
                     true
                 }
 

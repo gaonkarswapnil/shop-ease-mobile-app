@@ -15,5 +15,6 @@ data class AddToCart (
     val price: Long,
     val slug: String,
     val title: String,
-    val updatedAt: String
+    val updatedAt: String,
+    var quantity: Int = 1
 )
