@@ -82,33 +82,16 @@ class CartAdapter(
 
     private fun cart(holder: CartAdapter.CartItemHolder, data: AddToCart, position: Int) {
         holder.item.text = data.quantity.toString()
-        val finalPrice = data.price * data.quantity
-        holder.cartProductPrice.text = "$ $finalPrice"
+//        val finalPrice = data.price * data.quantity
+//        holder.cartProductPrice.text = "$ $finalPrice"
         listener.onTotalPriceUpdated(calculateTotalPrice())
 
-        val updatedCartItem = data.copy(price = finalPrice)
-        list[position] = updatedCartItem  // Update list
-
-//        val addToCart= AddToCart(
-//            category = data.category,
-//            creationAt = data.creationAt,
-//            description = data.description,
-//            id = data.id,
-//            images = data.images,
-//            price = finalPrice,
-//            slug = data.slug,
-//            title = data.title,
-//            updatedAt = data.updatedAt,
-//            quantity = data.quantity
-//        )
-        update.onClick(updatedCartItem)
-//        notifyItemChanged(position)
+        update.onClick(data)
     }
 
     fun calculateTotalPrice(): Long {
         return list.sumOf { it.price * it.quantity}
     }
-
 
 
 }
