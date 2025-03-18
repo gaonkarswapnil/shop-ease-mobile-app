@@ -65,6 +65,7 @@ class CartFragment : Fragment(), CartPriceUpdateListener {
     }
 
     override fun onTotalPriceUpdated(totalPrice: Long) {
+        binding.tvTotalPrice.text = "Total: $$totalPrice"
         binding.tvPrice.text = "$totalPrice"
     }
 }
