@@ -3,6 +3,7 @@ package com.example.shopease.di
 import android.content.Context
 import androidx.room.Room
 import com.example.shopease.services.local.AddToCartDao
+import com.example.shopease.services.local.AddressDao
 import com.example.shopease.services.local.ProductDB
 import com.example.shopease.services.local.WishListDao
 import dagger.Module
@@ -38,5 +39,11 @@ object DatabaseModule {
     @Singleton
     fun provideAddCartDao(db: ProductDB): AddToCartDao{
         return db.getCartDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideAddressDao(db: ProductDB): AddressDao{
+        return db.getAddressDao()
     }
 }

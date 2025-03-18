@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.shopease.R
 import com.example.shopease.adapter.CartAdapter
 import com.example.shopease.databinding.FragmentCartBinding
 import com.example.shopease.interfaces.CartPriceUpdateListener
@@ -55,9 +56,15 @@ class CartFragment : Fragment(), CartPriceUpdateListener {
         binding.ivBtnBack.setOnClickListener {
             findNavController().popBackStack()
         }
+
+        binding.btnCheckoutAddress.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putLong("price", binding.tvPrice.text.toString().toLong())
+            findNavController().navigate(R.id.action_cartFragment_to_addressListFragment)
+        }
     }
 
     override fun onTotalPriceUpdated(totalPrice: Long) {
-        binding.tvTotalPrice.text = "Total: $ $totalPrice"
+        binding.tvPrice.text = "$totalPrice"
     }
 }

@@ -32,5 +32,27 @@
         android:id="@+id/cartFragment"
         android:name="com.example.shopease.view.CartFragment"
         android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_cartFragment_to_addressListFragment"
+            app:destination="@id/addressListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addressFormFragment"
+        android:name="com.example.shopease.view.AddressFormFragment"
+        android:label="fragment_address_form"
+        tools:layout="@layout/fragment_address_form" >
+        <action
+            android:id="@+id/action_addressFormFragment_to_addressListFragment"
+            app:destination="@id/addressListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addressListFragment"
+        android:name="com.example.shopease.view.AddressListFragment"
+        android:label="fragment_address_list"
+        tools:layout="@layout/fragment_address_list" >
+        <action
+            android:id="@+id/action_addressListFragment_to_addressFormFragment"
+            app:destination="@id/addressFormFragment" />
+    </fragment>
 </navigation>
