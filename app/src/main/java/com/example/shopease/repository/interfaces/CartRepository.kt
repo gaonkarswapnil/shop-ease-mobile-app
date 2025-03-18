@@ -16,4 +16,6 @@ interface CartRepository {
 
     suspend fun isProductInCart(id: Int): Boolean
 
+    suspend fun updateCart(product: AddToCart)
+
 }

@@ -14,11 +14,14 @@ import com.example.shopease.R
 import com.example.shopease.adapter.CartAdapter
 import com.example.shopease.databinding.FragmentCartBinding
 import com.example.shopease.interfaces.CartPriceUpdateListener
+import com.example.shopease.interfaces.CartUpdate
+import com.example.shopease.interfaces.ForProductId
+import com.example.shopease.model.AddToCart
 import com.example.shopease.viewmodel.CartViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CartFragment : Fragment(), CartPriceUpdateListener {
+class CartFragment : Fragment(), CartPriceUpdateListener, ForProductId, CartUpdate {
 
     private lateinit var binding: FragmentCartBinding
     private val cart: CartViewModel by viewModels()
@@ -45,7 +48,7 @@ class CartFragment : Fragment(), CartPriceUpdateListener {
 
         cart.addToCart.observe(viewLifecycleOwner, Observer { response ->
             binding.rvCart.layoutManager = LinearLayoutManager(requireContext())
-            val adapter = CartAdapter(response, this)
+            val adapter = CartAdapter(response.toMutableList(), this, this, this)
             binding.rvCart.adapter = adapter
 
             onTotalPriceUpdated(adapter.calculateTotalPrice())
@@ -67,5 +70,14 @@ class CartFragment : Fragment(), CartPriceUpdateListener {
     override fun onTotalPriceUpdated(totalPrice: Long) {
         binding.tvTotalPrice.text = "Total: $$totalPrice"
         binding.tvPrice.text = "$totalPrice"
+    }
+
+    override fun onItemClick(productId: Int) {
+        cart.removeFromCart(productId)
+        cart.getAllItems()
+    }
+
+    override fun onClick(addToCart: AddToCart) {
+        cart.updateCart(addToCart)
     }
 }

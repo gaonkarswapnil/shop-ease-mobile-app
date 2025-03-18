@@ -29,4 +29,8 @@ class CartRepositoryImpl @Inject constructor(
         return addToCartDao.isAvailable(id) != null
     }
 
+    override suspend fun updateCart(product: AddToCart) {
+        return addToCartDao.updateCart(product)
+    }
+
 }

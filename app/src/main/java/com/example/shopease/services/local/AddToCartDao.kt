@@ -3,6 +3,7 @@ package com.example.shopease.services.local
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import com.example.shopease.model.AddToCart
 
 @Dao
@@ -22,5 +23,8 @@ interface AddToCartDao {
 
     @Query("select * from add_to_cart_table where id= :id")
     suspend fun isAvailable(id: Int): AddToCart?
+
+    @Update
+    suspend fun updateCart(product: AddToCart)
 
 }

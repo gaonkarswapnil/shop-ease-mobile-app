@@ -10,11 +10,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.shopease.R
 import com.example.shopease.interfaces.CartPriceUpdateListener
+import com.example.shopease.interfaces.CartUpdate
+import com.example.shopease.interfaces.ForProductId
 import com.example.shopease.model.AddToCart
+import com.example.shopease.model.Category
 
 class CartAdapter(
-    private val list: List<AddToCart>,
-    private val listener: CartPriceUpdateListener
+    private val list: MutableList<AddToCart>,
+    private val listener: CartPriceUpdateListener,
+    private val onClick: ForProductId,
+    private val update: CartUpdate
 ): RecyclerView.Adapter<CartAdapter.CartItemHolder>() {
 
     class CartItemHolder(view: View): RecyclerView.ViewHolder(view){
@@ -26,6 +31,8 @@ class CartAdapter(
         val add = view.findViewById<ImageButton>(R.id.btn_add)
         val remove = view.findViewById<ImageButton>(R.id.btn_remove)
         val item = view.findViewById<TextView>(R.id.tv_no_of_items)
+
+        val clear = view.findViewById<ImageButton>(R.id.ib_cart_clear)
 
     }
 
@@ -54,24 +61,54 @@ class CartAdapter(
         holder.item.text = data.quantity.toString()
         holder.add.setOnClickListener {
             data.quantity++
-            holder.item.text = data.quantity.toString()
-            holder.cartProductPrice.text = "$ ${data.price * data.quantity}"
-            listener.onTotalPriceUpdated(calculateTotalPrice())
+            cart(holder, data, position)
+
         }
 
         holder.remove.setOnClickListener {
             if (data.quantity > 1) {
                 data.quantity--
-                holder.item.text = data.quantity.toString()
-                holder.cartProductPrice.text = "$ ${data.price * data.quantity}"
-                listener.onTotalPriceUpdated(calculateTotalPrice())
+                cart(holder, data, position)
+//                holder.item.text = data.quantity.toString()
+//                holder.cartProductPrice.text = "$ ${data.price * data.quantity}"
+//                listener.onTotalPriceUpdated(calculateTotalPrice())
             }
         }
 
+        holder.clear.setOnClickListener {
+            onClick.onItemClick(data.id)
+        }
+    }
+
+    private fun cart(holder: CartAdapter.CartItemHolder, data: AddToCart, position: Int) {
+        holder.item.text = data.quantity.toString()
+        val finalPrice = data.price * data.quantity
+        holder.cartProductPrice.text = "$ $finalPrice"
+        listener.onTotalPriceUpdated(calculateTotalPrice())
+
+        val updatedCartItem = data.copy(price = finalPrice)
+        list[position] = updatedCartItem  // Update list
+
+//        val addToCart= AddToCart(
+//            category = data.category,
+//            creationAt = data.creationAt,
+//            description = data.description,
+//            id = data.id,
+//            images = data.images,
+//            price = finalPrice,
+//            slug = data.slug,
+//            title = data.title,
+//            updatedAt = data.updatedAt,
+//            quantity = data.quantity
+//        )
+        update.onClick(updatedCartItem)
+//        notifyItemChanged(position)
     }
 
     fun calculateTotalPrice(): Long {
         return list.sumOf { it.price * it.quantity}
     }
+
+
 
 }

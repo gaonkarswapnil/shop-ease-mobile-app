@@ -12,7 +12,7 @@ data class AddToCart (
     val description: String,
     val id: Int,
     val images: List<String>,
-    val price: Long,
+    var price: Long,
     val slug: String,
     val title: String,
     val updatedAt: String,

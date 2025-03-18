@@ -46,4 +46,10 @@ class CartViewModel @Inject constructor(
             _addToCart.postValue(cart.getAllItems())
         }
     }
+
+    fun updateCart(product: AddToCart){
+        viewModelScope.launch {
+            cart.updateCart(product)
+        }
+    }
 }
