@@ -23,6 +23,7 @@ android {
         }
 
         buildConfigField(type = "String", name = "BASE_URL", value = properties.getProperty("BASE_URL"))
+        buildConfigField(type = "String", name = "RAZOR_PAY", value = properties.getProperty("RAZOR_PAY"))
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

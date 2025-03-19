@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.shopease.BuildConfig
 import com.example.shopease.R
 import com.example.shopease.adapter.CheckoutAdapter
 import com.example.shopease.databinding.FragmentCheckoutBinding
@@ -74,9 +75,9 @@ class CheckoutFragment : Fragment(), PaymentResultListener {
         binding.btnPayment.setOnClickListener(object: View.OnClickListener{
             override fun onClick(p0: View?) {
 //                val str = binding.tvTotalPriceInCheckout.text.toString()
-                val amount = (price!!.toFloat() * 100).toInt()
+                val amount = (price!!.toFloat() * 100).toInt() * 80
                 val checkout = Checkout()
-                checkout.setKeyID("rzp_test_9fg4XGPPKHTgz8")
+                checkout.setKeyID(BuildConfig.RAZOR_PAY)
                 checkout.setImage(R.drawable.app_icon)
                 val paymentData = JSONObject()
 
@@ -85,7 +86,7 @@ class CheckoutFragment : Fragment(), PaymentResultListener {
                         put("name",getString(R.string.app_name))
                         put("description","Test Description")
                         put("theme.color", "#3399cc")
-                        put("currency", "USD")
+                        put("currency", "INR")
                         put("amount",amount)
                         put("prefill.contact","9999999999")
                         put("prefill.email", "oliver@gmail.com");
