@@ -21,4 +21,9 @@ class AddressRepositoryImpl @Inject constructor(
         return addressDao.removeAddress(id)
     }
 
+    override suspend fun getAddressFromId(id: Int): Address {
+        return addressDao.getAddressFromId(id)
+    }
+
+
 }

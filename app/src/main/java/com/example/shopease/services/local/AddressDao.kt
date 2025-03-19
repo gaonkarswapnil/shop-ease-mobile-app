@@ -17,4 +17,6 @@ interface AddressDao {
     @Query("delete from address_table where id= :id")
     suspend fun removeAddress(id: Int)
 
+    @Query("select * from address_table where id= :id")
+    suspend fun getAddressFromId(id: Int): Address
 }

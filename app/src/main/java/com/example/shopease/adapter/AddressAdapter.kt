@@ -8,12 +8,14 @@ import android.widget.RadioButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shopease.R
+import com.example.shopease.interfaces.ForAddress
 import com.example.shopease.interfaces.ForProductId
 import com.example.shopease.model.Address
 
 class AddressAdapter(
     private val list: List<Address>,
-    private val onClick: ForProductId
+    private val onClick: ForProductId,
+    private val forId: ForAddress
 ): RecyclerView.Adapter<AddressAdapter.AddressViewHolder>() {
     class AddressViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val addressText = itemView.findViewById<RadioButton>(R.id.radioButton)
@@ -34,6 +36,10 @@ class AddressAdapter(
 
         holder.clear.setOnClickListener {
             onClick.onItemClick(list[position].id)
+        }
+
+        holder.addressText.setOnClickListener {
+            forId.addressId(list[position].id)
         }
     }
 

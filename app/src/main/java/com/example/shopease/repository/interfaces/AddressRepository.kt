@@ -9,4 +9,7 @@ interface AddressRepository {
     suspend fun getAllAddress(): List<Address>
 
     suspend fun removeAddress(id: Int)
+
+    suspend fun getAddressFromId(id: Int): Address
+
 }

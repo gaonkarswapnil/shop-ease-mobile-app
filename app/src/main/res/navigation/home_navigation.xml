@@ -54,5 +54,13 @@
         <action
             android:id="@+id/action_addressListFragment_to_addressFormFragment"
             app:destination="@id/addressFormFragment" />
+        <action
+            android:id="@+id/action_addressListFragment_to_checkoutFragment"
+            app:destination="@id/checkoutFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="com.example.shopease.view.CheckoutFragment"
+        android:label="fragment_checkout"
+        tools:layout="@layout/fragment_checkout" />
 </navigation>

@@ -35,4 +35,11 @@ class AddressViewModel @Inject constructor(
         }
     }
 
+    private val _singleAddress: MutableLiveData<Address> = MutableLiveData()
+    val singleAddress: LiveData<Address> = _singleAddress
+    fun getAddressFromId(id: Int){
+        viewModelScope.launch {
+            _singleAddress.postValue(addressRespository.getAddressFromId(id))
+        }
+    }
 }

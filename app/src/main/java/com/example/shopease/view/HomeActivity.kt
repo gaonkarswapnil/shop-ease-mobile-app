@@ -37,6 +37,7 @@ class HomeActivity : AppCompatActivity() {
                 R.id.productDetailFragment -> binding.bottomNavigation.visibility = View.GONE
                 R.id.addressFormFragment -> binding.bottomNavigation.visibility = View.GONE
                 R.id.addressListFragment -> binding.bottomNavigation.visibility = View.GONE
+                R.id.checkoutFragment -> binding.bottomNavigation.visibility = View.GONE
                 else -> binding.bottomNavigation.visibility = View.VISIBLE
             }
         }
